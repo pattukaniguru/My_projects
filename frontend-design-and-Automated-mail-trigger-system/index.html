@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Learning Portal — Register for cutting-edge AI, ML, and technology courses. Start your learning journey today.">
+    <title>AI Learning Portal - Student Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated gradient background -->
+    <div class="bg-animated"></div>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Error toast notification -->
+    <div class="toast" id="error-toast">
+        <span class="toast__icon">⚠️</span>
+        <span id="toast-message">Something went wrong. Please try again.</span>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+        <div class="card">
+
+            <!-- ===== Card Header ===== -->
+            <div class="card__header" id="form-header">
+                <div class="card__logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h1 class="card__title">AI Learning Portal</h1>
+                <p class="card__subtitle">Student Registration — Fill in your details to get started</p>
+            </div>
+
+            <!-- ===== Registration Form ===== -->
+            <form id="registration-form" class="form" autocomplete="off" novalidate>
+
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label class="form-group__label" for="fullName">
+                        Full Name <span class="required">*</span>
+                    </label>
+                    <input class="form-group__input" type="text" id="fullName" name="fullName"
+                           placeholder="e.g. John Doe" />
+                    <div class="form-group__error" id="fullName-error"></div>
+                </div>
+
+                <!-- Department & Year -->
+                <div class="form__row">
+                    <div class="form-group">
+                        <label class="form-group__label" for="department">
+                            Department <span class="required">*</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <select class="form-group__select" id="department" name="department">
+                                <option value="" disabled selected>Select Department</option>
+                                <option value="AI & DS">AI & DS</option>
+                                <option value="CSE">CSE</option>
+                                <option value="IT">IT</option>
+                                <option value="ECE">ECE</option>
+                                <option value="EEE">EEE</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                            </select>
+                        </div>
+                        <div class="form-group__error" id="department-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-group__label" for="year">
+                            Year <span class="required">*</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <select class="form-group__select" id="year" name="year">
+                                <option value="" disabled selected>Select Year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="form-group__error" id="year-error"></div>
+                    </div>
+                </div>
+
+                <!-- College Name -->
+                <div class="form-group">
+                    <label class="form-group__label" for="collegeName">
+                        College Name <span class="required">*</span>
+                    </label>
+                    <input class="form-group__input" type="text" id="collegeName" name="collegeName"
+                           placeholder="e.g. ABC Institute of Technology" />
+                    <div class="form-group__error" id="collegeName-error"></div>
+                </div>
+
+                <!-- Register Number & Email -->
+                <div class="form__row">
+                    <div class="form-group">
+                        <label class="form-group__label" for="registerNumber">
+                            Register Number <span class="required">*</span>
+                        </label>
+                        <input class="form-group__input" type="text" id="registerNumber" name="registerNumber"
+                               placeholder="e.g. 2024CSE001" />
+                        <div class="form-group__error" id="registerNumber-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-group__label" for="email">
+                            Email ID <span class="required">*</span>
+                        </label>
+                        <input class="form-group__input" type="email" id="email" name="email"
+                               placeholder="e.g. john@college.edu" />
+                        <div class="form-group__error" id="email-error"></div>
+                    </div>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                    <label class="form-group__label" for="mobile">
+                        Mobile Number <span class="required">*</span>
+                    </label>
+                    <input class="form-group__input" type="tel" id="mobile" name="mobile"
+                           placeholder="e.g. 9876543210" maxlength="10" />
+                    <div class="form-group__error" id="mobile-error"></div>
+                </div>
+
+                <!-- Divider -->
+                <div class="form__divider"><span>Course Selection</span></div>
+
+                <!-- Course Dropdown -->
+                <div class="form-group">
+                    <label class="form-group__label" for="course">
+                        Choose a Course <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-group__select" id="course" name="course">
+                            <option value="" disabled selected>Select a Course</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Full Stack Development">Full Stack Development</option>
+                            <option value="Cyber Security">Cyber Security</option>
+                            <option value="Cloud Computing">Cloud Computing</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Python Programming">Python Programming</option>
+                            <option value="Java Programming">Java Programming</option>
+                        </select>
+                    </div>
+                    <div class="form-group__error" id="course-error"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn--ghost" id="reset-btn">Reset Form</button>
+                    <button type="submit" class="btn btn--primary" id="submit-btn">
+                        <span class="btn__spinner"></span>
+                        <span class="btn__text">🚀 Start Course</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- ===== Success Screen ===== -->
+            <div class="success-screen" id="success-screen">
+
+                <div class="success__header">
+                    <div class="success__icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <span class="success__badge">🎉</span>
+                    <h2 class="success__title">Registration Successful</h2>
+                    <p class="success__welcome" id="success-welcome">Welcome, Student!</p>
+                    <p class="success__subtitle">Your registration has been completed successfully.</p>
+                </div>
+
+                <!-- Student Details Card -->
+                <div class="success__details-card">
+                    <div class="success__details-title">Student Details</div>
+
+                    <div class="success__detail-row">
+                        <span class="success__detail-icon">👤</span>
+                        <div class="success__detail-content">
+                            <div class="success__detail-label">Name</div>
+                            <div class="success__detail-value" id="detail-name">—</div>
+                        </div>
+                    </div>
+
+                    <div class="success__detail-row">
+                        <span class="success__detail-icon">🏢</span>
+                        <div class="success__detail-content">
+                            <div class="success__detail-label">Department</div>
+                            <div class="success__detail-value" id="detail-department">—</div>
+                        </div>
+                    </div>
+
+                    <div class="success__detail-row">
+                        <span class="success__detail-icon">🎓</span>
+                        <div class="success__detail-content">
+                            <div class="success__detail-label">Year</div>
+                            <div class="success__detail-value" id="detail-year">—</div>
+                        </div>
+                    </div>
+
+                    <div class="success__detail-row">
+                        <span class="success__detail-icon">🏫</span>
+                        <div class="success__detail-content">
+                            <div class="success__detail-label">College</div>
+                            <div class="success__detail-value" id="detail-college">—</div>
+                        </div>
+                    </div>
+
+                    <div class="success__detail-row">
+                        <span class="success__detail-icon">📚</span>
+                        <div class="success__detail-content">
+                            <div class="success__detail-label">Course</div>
+                            <div class="success__detail-value" id="detail-course">—</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="success__timestamp" id="success-timestamp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="timestamp-text">Registered on —</span>
+                </div>
+
+                <p class="success__thankyou">Thank you for joining our learning program.</p>
+
+                <button class="btn btn--success" id="proceed-btn">
+                    ✨ Proceed to Learning Portal
+                </button>
+                <button class="btn btn--ghost" id="register-again-btn" style="width:100%; margin-top: 12px;">
+                    🔄 Register Again
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Built with <span class="footer__heart">❤</span> for learners &nbsp;·&nbsp; AI Learning Portal &copy; 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
